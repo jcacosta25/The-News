@@ -12,6 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // get the api key from https://newsapi.org/ and change [newsApiKey] with your api key value
+        buildConfigField 'String', "ApiKey", newsApiKey
+        resValue 'string', "api_key", newsApiKey
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation":
@@ -70,6 +73,14 @@ dependencies {
     testImplementation Deps.jUnit
     testImplementation Deps.mockitoKotlin
     testImplementation Deps.mockito
+
+    implementation Deps.timber
+    implementation Deps.dagger
+    implementation Deps.daggerAndroid
+    implementation Deps.daggerAndroidSupport
+
+    kapt Deps.daggerAndroidProcessor
+    kapt Deps.daggerCompiler
 
     androidTestImplementation Deps.testRunner
     androidTestImplementation Deps.espressoCore

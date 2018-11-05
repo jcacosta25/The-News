@@ -40,6 +40,7 @@ object Versions {
     const val espresso = "3.1.0-alpha3"
     const val mockito = "2.8.47"
     const val mockitoKotlin = "1.5.0"
+    const val timberVersion = "4.7.1"
 
 }
 
@@ -91,4 +92,5 @@ object Deps {
     const val testRules = "androidx.test:rules:${Versions.testRunner}"
     const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.mockitoKotlin}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
 }
