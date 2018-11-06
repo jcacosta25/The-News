@@ -1,4 +1,4 @@
-package io.jcal.thenewsprovider.data.repository.api.factory
+package io.jcal.thenewsprovider.repository.api.factory
 
 import androidx.lifecycle.LiveData
 import retrofit2.Call

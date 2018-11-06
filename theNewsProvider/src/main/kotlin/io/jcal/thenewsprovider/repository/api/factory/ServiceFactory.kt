@@ -1,4 +1,4 @@
-package io.jcal.thenewsprovider.data.repository.api.factory
+package io.jcal.thenewsprovider.repository.api.factory
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
