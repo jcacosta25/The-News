@@ -1,0 +1,88 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // get the api key from https://newsapi.org/ and change [newsApiKey] with your api key value
+        buildConfigField 'String', "ApiKey", newsApiKey
+        resValue 'string', "api_key", newsApiKey
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.xml'
+        exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.properties'
+        exclude '.readme'
+        exclude 'asm-license.txt'
+        exclude 'cglib-license.txt'
+        exclude 'NOTICE'
+        exclude 'LICENSE'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Deps.kotlin
+    implementation Deps.retrofit
+    implementation Deps.retrofitConverterMoshi
+    implementation Deps.okHttpInterceptor
+    implementation Deps.okHttp
+    implementation Deps.lifeCycleExtensions
+
+    implementation Deps.archRoomTime
+
+    kapt Deps.roomCompiler
+    annotationProcessor Deps.roomCompiler
+    testImplementation Deps.roomTesting
+
+    testImplementation Deps.lifeCycleTest
+    testImplementation Deps.jUnit
+    testImplementation Deps.kotlin
+    testImplementation Deps.mockitoKotlin
+    testImplementation Deps.mockito
+
+    implementation Deps.timber
+    implementation Deps.dagger
+    implementation Deps.daggerAndroid
+    implementation Deps.daggerAndroidSupport
+
+    kapt Deps.daggerAndroidProcessor
+    kapt Deps.daggerCompiler
+
+    androidTestImplementation Deps.testRunner
+    androidTestImplementation Deps.espressoCore
+}
