@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -15,13 +15,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation":
-                                     "$projectDir/schemas".toString()]
-            }
-        }
 
+    }
+    configurations.all {
+        resolutionStrategy {
+            force Deps.kotlin
+        }
     }
     buildTypes {
         release {
@@ -65,6 +64,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':provider')
     implementation Deps.kotlin
+    implementation Deps.kotlinReflect
     implementation Deps.appCompat
     implementation Deps.constraintLayout
     implementation Deps.constraintLayoutSolver
@@ -82,7 +82,7 @@ dependencies {
 
     kapt Deps.daggerCompiler
     kapt Deps.daggerAndroidProcessor
-    annotationProcessor Deps.dataBinding
+    kapt Deps.dataBinding
 
     testImplementation Deps.jUnit
     testImplementation Deps.mockito

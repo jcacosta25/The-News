@@ -15,9 +15,9 @@ class DeviceUtils @Inject constructor(private val context: Context) {
      */
     val isNetworkAvailable: Boolean
         get() {
-            val conectivityManager =
+            val connectivityManager =
                 context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-            val networkInfo = conectivityManager.activeNetworkInfo
+            val networkInfo = connectivityManager.activeNetworkInfo
             return networkInfo != null
         }
 }
