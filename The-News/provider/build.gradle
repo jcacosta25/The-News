@@ -15,12 +15,7 @@ android {
         // get the api key from https://newsapi.org/ and change [newsApiKey] with your api key value
         buildConfigField 'String', "ApiKey", newsApiKey
         resValue 'string', "api_key", newsApiKey
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation":
-                                     "$projectDir/schemas".toString()]
-            }
-        }
+    
     }
 
     buildTypes {
@@ -56,14 +51,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation Deps.kotlin
+    api Deps.kotlin
     implementation Deps.retrofit
     implementation Deps.retrofitConverterMoshi
     implementation Deps.okHttpInterceptor
     implementation Deps.okHttp
-    implementation Deps.lifeCycleExtensions
+    api Deps.lifeCycleExtensions
 
-    implementation Deps.archRoomTime
+    api Deps.archRoomTime
 
     kapt Deps.roomCompiler
     annotationProcessor Deps.roomCompiler
@@ -75,10 +70,10 @@ dependencies {
     testImplementation Deps.mockitoKotlin
     testImplementation Deps.mockito
 
-    implementation Deps.timber
-    implementation Deps.dagger
-    implementation Deps.daggerAndroid
-    implementation Deps.daggerAndroidSupport
+    api Deps.timber
+    api Deps.dagger
+    api Deps.daggerAndroid
+    api Deps.daggerAndroidSupport
 
     kapt Deps.daggerAndroidProcessor
     kapt Deps.daggerCompiler

@@ -15,12 +15,16 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
 
     }
     configurations.all {
-        resolutionStrategy {
-            force Deps.kotlin
-        }
+        resolutionStrategy.force "org.jetbrains:annotations:16.0.1"
     }
     buildTypes {
         release {
@@ -72,13 +76,8 @@ dependencies {
     implementation Deps.customTabs
     implementation Deps.multiDex
     implementation Deps.picasso
-    implementation Deps.dagger
-    implementation Deps.daggerAndroid
-    implementation Deps.daggerAndroidSupport
     implementation Deps.navigationFragment
     implementation Deps.navigationUi
-    implementation Deps.okHttpInterceptor
-    implementation Deps.okHttp
 
     kapt Deps.daggerCompiler
     kapt Deps.daggerAndroidProcessor

@@ -1,7 +1,8 @@
-package io.jcal.thenews
+package io.jcal.thenews.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import io.jcal.thenews.R
 
 
 class MainActivity : AppCompatActivity() {

@@ -13,7 +13,8 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideNewsService(interceptor: Interceptor): NewsService =
-        ServiceFactory.createRetrofitService(NewsService::class.java, NEWS_WEB_URL, interceptor)
+        ServiceFactory.createRetrofitService(NewsService::class.java,
+            NEWS_WEB_URL, interceptor)
 
 
     companion object {

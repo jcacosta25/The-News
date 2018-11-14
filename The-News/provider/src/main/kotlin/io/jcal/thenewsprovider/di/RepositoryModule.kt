@@ -14,7 +14,7 @@ import io.jcal.thenewsprovider.repository.datasource.DiskDataSourceImpl
 import io.jcal.thenewsprovider.repository.db.AppDataBase
 import javax.inject.Singleton
 
-@Module(includes = [NetworkModule::class, StorageModule::class])
+@Module
 class RepositoryModule {
 
     @Provides
