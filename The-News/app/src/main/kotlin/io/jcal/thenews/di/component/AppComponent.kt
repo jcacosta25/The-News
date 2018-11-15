@@ -8,9 +8,9 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import io.jcal.thenews.NewsApp
 import io.jcal.thenews.di.modules.NewsModule
-import io.jcal.thenewsprovider.di.NetworkModule
-import io.jcal.thenewsprovider.di.RepositoryModule
-import io.jcal.thenewsprovider.di.StorageModule
+import io.jcal.thenews.ui.BaseFragment
+import io.jcal.thenews.ui.SearchNewsFragment
+import io.jcal.thenews.ui.TopNewsFragment
 import io.jcal.thenewsprovider.domain.executor.ThreadExecutor
 import io.jcal.thenewsprovider.repository.api.NewsService
 import io.jcal.thenewsprovider.repository.db.AppDataBase
@@ -18,12 +18,11 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [
-    AndroidInjectionModule::class,
-    NewsModule::class,
-    RepositoryModule::class,
-    StorageModule::class,
-    NetworkModule::class])
+@Component(
+    modules = [
+        AndroidInjectionModule::class,
+        NewsModule::class]
+)
 interface AppComponent {
 
     @Component.Builder
@@ -47,4 +46,9 @@ interface AppComponent {
 
     fun inject(application: NewsApp)
 
+    fun inject(topNewsFragment: TopNewsFragment)
+
+    fun inject(searchNewsFragment: SearchNewsFragment)
+
+    fun inject(baseFragment: BaseFragment)
 }

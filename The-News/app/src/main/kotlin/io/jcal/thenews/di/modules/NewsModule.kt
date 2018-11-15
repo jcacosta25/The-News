@@ -1,28 +1,23 @@
 package io.jcal.thenews.di.modules
 
-import android.app.Application
-import android.content.Context
-import android.content.res.Resources
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import io.jcal.thenewsprovider.domain.executor.JobExecutor
-import io.jcal.thenewsprovider.domain.executor.ThreadExecutor
-import javax.inject.Singleton
+import dagger.multibindings.IntoMap
+import io.jcal.thenews.di.scopes.ViewModelKey
+import io.jcal.thenews.ui.viewmodel.NewsViewModel
+import io.jcal.thenews.ui.viewmodel.ViewModelFactoryEx
 
-@Module
-class NewsModule {
+@Module(includes = [NewsAppModule::class])
+abstract class NewsModule {
 
-    @Provides
-    @Singleton
-    fun providesAppContext(application: Application): Context = application.applicationContext
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewsViewModel::class)
+    abstract fun bindNewsViewModel(viewModel: NewsViewModel): ViewModel
 
-    @Provides
-    @Singleton
-    internal fun providesResources(application: Application): Resources = application.resources
-
-    @Provides
-    @Singleton
-    internal fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor = jobExecutor
-
+    @Binds
+    abstract fun bindViewModelFactory(factory: ViewModelFactoryEx): ViewModelProvider.Factory
 
 }
