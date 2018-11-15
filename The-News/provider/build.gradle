@@ -54,8 +54,8 @@ dependencies {
     api Deps.kotlin
     implementation Deps.retrofit
     implementation Deps.retrofitConverterMoshi
-    implementation Deps.okHttpInterceptor
-    implementation Deps.okHttp
+    api Deps.okHttpInterceptor
+    api Deps.okHttp
     api Deps.lifeCycleExtensions
 
     api Deps.archRoomTime
