@@ -50,7 +50,7 @@ class RepositoryImpl @Inject constructor(
 
     override fun selectTopArticle(): LiveData<ListArticlesModel> =
         Transformations.map(
-            diskDataSource.selectAllTopHeadlines()
+            diskDataSource.selectAllHeadlines()
         ) { entities ->
             dataMapper.convert(entities)
         }

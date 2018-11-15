@@ -13,18 +13,17 @@ import javax.inject.Inject
 
 class NewsMapper @Inject constructor() {
 
-    fun convert(response: ArticleResponse, isHeadline: Boolean = false): ArticleModel {
+    fun convert(response: ArticleResponse): ArticleModel {
         val model = ArticleModel(
             author = nullToString(response.author),
             content = nullToString(response.author),
             description = nullToString(response.author),
-            date = response.publishedAt,
+            date = nullToString(response.publishedAt),
             sourceId = nullToString(response.source.id),
             sourceName = nullToString(response.source.name),
             title = nullToString(response.title),
             url = nullToString(response.url),
-            image = nullToString(response.urlToImage),
-            isHeadline = isHeadline
+            image = nullToString(response.urlToImage)
         )
         model.status = SUCCESS
         return model
@@ -40,8 +39,7 @@ class NewsMapper @Inject constructor() {
             sourceName = entity.sourceName,
             title = entity.title,
             url = entity.url,
-            image = entity.imageUrl,
-            isHeadline = entity.isHeadline
+            image = entity.imageUrl
         )
         model.status = SUCCESS
         return model
@@ -57,8 +55,7 @@ class NewsMapper @Inject constructor() {
             sourceName = model.sourceName,
             title = model.title,
             imageUrl = model.image,
-            url = model.url,
-            isHeadline = model.isHeadline
+            url = model.url
         )
 
 
@@ -80,9 +77,9 @@ class NewsMapper @Inject constructor() {
         articles = entities.map { convert(it) } as MutableList<ArticleModel>
     )
 
-    fun convert(response: ArticlesResponse, isHeadline: Boolean = false): ListArticlesModel =
+    fun convert(response: ArticlesResponse): ListArticlesModel =
         ListArticlesModel(
-            articles = response.articles.map { convert(it, isHeadline) } as MutableList<ArticleModel>
+            articles = response.articles.map { convert(it) } as MutableList<ArticleModel>
         )
 
     private fun nullToString(string: String?): String = string ?: ""

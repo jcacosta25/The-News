@@ -1,6 +1,6 @@
 package io.jcal.thenewsprovider.repository.db
 
-
+const val DATABASE_NAME_PROPERTY = "database_name"
 const val DATABASE_NAME = "the_news_app.db"
 const val DATABASE_VERSION = 1
 const val TABLE_NAME_TOP_ARTICLE = "articles"

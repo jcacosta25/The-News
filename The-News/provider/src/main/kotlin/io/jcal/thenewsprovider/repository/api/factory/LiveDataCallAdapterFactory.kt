@@ -1,12 +1,11 @@
 package io.jcal.thenewsprovider.repository.api.factory
 
 
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
-
 import androidx.lifecycle.LiveData
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 
 class LiveDataCallAdapterFactory : CallAdapter.Factory() {
 
@@ -15,26 +14,18 @@ class LiveDataCallAdapterFactory : CallAdapter.Factory() {
         annotations: Array<Annotation>,
         retrofit: Retrofit
     ): CallAdapter<*, *>? {
-        if (CallAdapter.Factory.getRawType(returnType) != LiveData<*>::class.java) {
-            return null
-        }
-        val observableType =
-            CallAdapter.Factory.getParameterUpperBound(0, returnType as ParameterizedType)
-        val rawObservableType = CallAdapter.Factory.getRawType(observableType)
-        if (rawObservableType != ApiResponse<*>::class.java) {
-            throw IllegalArgumentException("type must be a resource")
-        }
-        if (observableType !is ParameterizedType) {
-            throw IllegalArgumentException("resource must be parameterized")
-        }
-        val bodyType = CallAdapter.Factory.getParameterUpperBound(0, observableType)
-        return LiveDataCallAdapter<*>(bodyType)
+        if (getRawType(returnType) != LiveData::class.java) return null
+        val observable: Type = getParameterUpperBound(UPPER_BOUND_PARAMETER, (returnType as ParameterizedType))
+        val rawObservable = getRawType(observable)
+        if (rawObservable != ApiResponse::class.java) throw IllegalArgumentException("type must be a resource")
+        if ((observable is ParameterizedType).not()) throw IllegalArgumentException("resource must be parameterized")
+        val bodyType = getParameterUpperBound(UPPER_BOUND_PARAMETER, (observable as ParameterizedType))
+        return LiveDataCallAdapter<Any>(bodyType)
     }
 
     companion object {
+        fun create(): LiveDataCallAdapterFactory = LiveDataCallAdapterFactory()
 
-        fun create(): LiveDataCallAdapterFactory {
-            return LiveDataCallAdapterFactory()
-        }
+        private const val UPPER_BOUND_PARAMETER = 0
     }
 }

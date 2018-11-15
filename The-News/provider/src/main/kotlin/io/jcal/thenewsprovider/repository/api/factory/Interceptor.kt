@@ -12,14 +12,13 @@ class Interceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         request = request.newBuilder()
-            .addHeader(API_KEY, BuildConfig.ApiKey)
-            .url(request.url().newBuilder().build())
+            .url(request.url().newBuilder().addQueryParameter(API_KEY,BuildConfig.ApiKey).build())
             .build()
         return chain.proceed(request)
     }
 
     companion object {
         @JvmStatic
-        private val API_KEY = "x-api-key"
+        private val API_KEY = "apiKey"
     }
 }

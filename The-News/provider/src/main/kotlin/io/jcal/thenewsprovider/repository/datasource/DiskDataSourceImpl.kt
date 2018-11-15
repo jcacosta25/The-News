@@ -15,6 +15,6 @@ class DiskDataSourceImpl @Inject constructor(private val database: AppDataBase) 
     override fun selectTopHeadline(articleTitle: String): LiveData<ArticleEntity> =
         database.topArticleDao().selectArticleByTitle(articleTitle)
 
-    override fun selectAllTopHeadlines(): LiveData<List<ArticleEntity>> =
-        database.topArticleDao().selectHeadline()
+    override fun selectAllHeadlines(): LiveData<List<ArticleEntity>> =
+        database.topArticleDao().selectAll()
 }

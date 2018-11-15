@@ -5,7 +5,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import io.jcal.thenewsprovider.repository.db.*
-import java.util.*
 
 @Entity(tableName = TABLE_NAME_TOP_ARTICLE)
 data class ArticleEntity(
@@ -24,16 +23,13 @@ data class ArticleEntity(
     val description: String,
 
     @ColumnInfo(name = COLUMN_ARTICLE_DATE)
-    val date: Date,
+    val date: String,
 
     @ColumnInfo(name = COLUMN_ARTICLE_SOURCE_ID)
     val sourceId: String,
 
     @ColumnInfo(name = COLUMN_ARTICLE_SOURCE_NAME)
     val sourceName: String,
-
-    @ColumnInfo(name = COLUMN_ARTICLE_IS_HEADLINE)
-    val isHeadline: Boolean,
 
     @ColumnInfo(name = COLUMN_ARTICLE_ULR)
     val url: String,

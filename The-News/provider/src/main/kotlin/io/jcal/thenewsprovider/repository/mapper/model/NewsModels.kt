@@ -1,18 +1,15 @@
 package io.jcal.thenewsprovider.repository.mapper.model
 
-import java.util.*
-
 data class ArticleModel(
     val author: String = "",
     val content: String = "",
     val description: String = "",
-    val date: Date = Date(),
+    val date: String = "",
     val sourceName: String = "",
     val sourceId: String = "",
     val url: String = "",
     val image: String = "",
-    val title: String = "",
-    val isHeadline:Boolean = false
+    val title: String = ""
 ) : BaseModel()
 
 data class SourceModel(

@@ -15,6 +15,11 @@ android {
         // get the api key from https://newsapi.org/ and change [newsApiKey] with your api key value
         buildConfigField 'String', "ApiKey", newsApiKey
         resValue 'string', "api_key", newsApiKey
+        kapt {
+            arguments {
+                arg("room.schemaLocation","$projectDir/schemas".toString())
+            }
+        }
     
     }
 
@@ -53,7 +58,7 @@ dependencies {
 
     api Deps.kotlin
     implementation Deps.retrofit
-    implementation Deps.retrofitConverterMoshi
+    implementation Deps.retrofitConverterGson
     api Deps.okHttpInterceptor
     api Deps.okHttp
     api Deps.lifeCycleExtensions
@@ -61,7 +66,6 @@ dependencies {
     api Deps.archRoomTime
 
     kapt Deps.roomCompiler
-    annotationProcessor Deps.roomCompiler
     testImplementation Deps.roomTesting
 
     testImplementation Deps.lifeCycleTest

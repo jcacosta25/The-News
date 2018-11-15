@@ -10,5 +10,5 @@ interface DiskDataSource {
 
     fun selectTopHeadline(articleTitle: String): LiveData<ArticleEntity>
 
-    fun selectAllTopHeadlines(): LiveData<List<ArticleEntity>>
+    fun selectAllHeadlines(): LiveData<List<ArticleEntity>>
 }

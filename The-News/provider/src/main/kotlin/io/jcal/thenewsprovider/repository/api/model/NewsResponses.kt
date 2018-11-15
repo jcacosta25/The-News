@@ -1,56 +1,55 @@
 package io.jcal.thenewsprovider.repository.api.model
 
-import com.squareup.moshi.Json
-import java.util.*
+import com.google.gson.annotations.SerializedName
 
 data class ArticlesResponse(
-    @Json(name = "articles")
+    @SerializedName("articles")
     val articles: List<ArticleResponse>,
-    @Json(name = "status")
+    @SerializedName("status")
     val status: String,
-    @Json(name = "totalResults")
+    @SerializedName("totalResults")
     val totalResults: Int
 )
 
 data class SourcesResponse(
-    @Json(name = "status")
+    @SerializedName("status")
     val status: String,
-    @Json(name = "sources")
+    @SerializedName("sources")
     val sources: List<SourceResponse>
 )
 
 data class SourceResponse(
-    @Json(name = "category")
+    @SerializedName("category")
     val category: String?,
-    @Json(name = "country")
+    @SerializedName("country")
     val country: String?,
-    @Json(name = "description")
+    @SerializedName("description")
     val description: String?,
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String?,
-    @Json(name = "language")
+    @SerializedName("language")
     val language: String?,
-    @Json(name = "name")
+    @SerializedName("name")
     val name: String?,
-    @Json(name = "url")
+    @SerializedName("url")
     val url: String?
 )
 
 data class ArticleResponse(
-    @Json(name = "author")
+    @SerializedName("author")
     val author: String?,
-    @Json(name = "content")
+    @SerializedName("content")
     val content: String?,
-    @Json(name = "description")
+    @SerializedName("description")
     val description: String?,
-    @Json(name = "publishedAt")
-    val publishedAt: Date,
-    @Json(name = "source")
+    @SerializedName("publishedAt")
+    val publishedAt: String?,
+    @SerializedName("source")
     val source: SourceResponse,
-    @Json(name = "title")
+    @SerializedName("title")
     val title: String?,
-    @Json(name = "url")
+    @SerializedName("url")
     val url: String?,
-    @Json(name = "urlToImage")
+    @SerializedName("urlToImage")
     val urlToImage: String?
 )
