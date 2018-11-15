@@ -1,14 +1,14 @@
 package io.jcal.thenews
 
 import android.app.Activity
-import android.content.Context
 import androidx.multidex.MultiDexApplication
-import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import io.jcal.thenews.di.ComponentsFactory
 import io.jcal.thenews.di.component.AppComponent
+import io.jcal.thenews.ui.utils.ReleaseTree
+import timber.log.Timber
 import javax.inject.Inject
 
 class NewsApp : MultiDexApplication(), HasActivityInjector {
@@ -22,12 +22,15 @@ class NewsApp : MultiDexApplication(), HasActivityInjector {
         super.onCreate()
         appComponent = ComponentsFactory.createAppComponent(this)
         appComponent.inject(this)
+        if (BuildConfig.DEBUG) {
+            Timber.plant(object : timber.log.Timber.DebugTree() {
+                override fun createStackElementTag(element: StackTraceElement): String? =
+                    super.createStackElementTag(element).plus(':').plus(element.lineNumber)
+            })
+        } else {
+            Timber.plant(ReleaseTree())
+        }
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
-
-    companion object {
-        @JvmStatic
-        fun getAppComponent(context: Context): AppComponent = (context.applicationContext as NewsApp).appComponent
-    }
 }
