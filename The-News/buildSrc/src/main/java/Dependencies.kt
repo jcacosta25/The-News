@@ -56,7 +56,7 @@ object Deps {
     const val customTabs = "androidx.browser:browser:${Versions.support}"
     const val supportV4 = "androidx.legacy:legacy-support-v4:${Versions.support}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.support}"
-    const val design = "com.google.android.material:material:1.0.0-rc01"
+    const val design = "com.google.android.material:material:1.0.0"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitConverterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
