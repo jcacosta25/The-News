@@ -2,9 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion Versions.compileSdk
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "io.jcal.thenews"
         minSdkVersion Versions.minSdk
@@ -14,11 +18,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
-        }
-        kapt {
-            arguments {
-                arg("room.schemaLocation","$projectDir/schemas".toString())
-            }
         }
 
     }
@@ -38,9 +37,6 @@ android {
 
     lintOptions {
         abortOnError = true
-    }
-    dataBinding {
-        enabled = true
     }
 
     repositories {
@@ -89,8 +85,6 @@ dependencies {
 
     kapt Deps.daggerCompiler
     kapt Deps.daggerAndroidProcessor
-    kapt Deps.dataBinding
-    kapt Deps.roomCompiler
 
     testImplementation Deps.jUnit
     testImplementation Deps.mockito
