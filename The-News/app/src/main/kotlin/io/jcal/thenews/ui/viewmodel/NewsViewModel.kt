@@ -25,4 +25,8 @@ class NewsViewModel @Inject constructor(
         }
         return topNews
     }
+
+    fun setHeadlineNews(articles: ListArticlesUiModel?) {
+        topNews.postValue(articles)
+    }
 }

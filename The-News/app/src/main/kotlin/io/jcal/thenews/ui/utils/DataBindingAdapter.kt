@@ -4,6 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
+import io.jcal.thenews.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,7 +15,7 @@ class DataBindingAdapter {
         private const val DF_TIME_STRING = "HH:mm"
         private const val DF_STANDARD_STRING = "MMM-dd-yyyy"
         private const val DF_UTC_STRING = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        private const val DF_DAY_STRING = "MMM dd"
+        private const val DF_DAY_STRING = "MMM dd yy"
 
         @JvmStatic
         @BindingAdapter("android:setDate")
@@ -34,9 +35,13 @@ class DataBindingAdapter {
             if (!url.isNullOrEmpty()) {
                 Picasso.get()
                     .load(url)
-                    .centerCrop()
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
                     .fit()
+                    .centerCrop()
                     .into(imageView)
+            } else {
+                imageView.setImageResource(R.mipmap.ic_launcher)
             }
         }
     }
